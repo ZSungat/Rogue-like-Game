@@ -1,12 +1,11 @@
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed, health, maxHealth, damage;
+    public float speed, health, maxHealth;
+    public int damage;
     public RuntimeAnimatorController[] animCon;
     public Rigidbody2D target;
     public float HitWaitTime = 1f;

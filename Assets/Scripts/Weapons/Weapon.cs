@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
 
     [HideInInspector]
     public bool StatsUpdated;
+
     public Sprite icon;
 
     public void LevelUp()
@@ -18,17 +19,21 @@ public class Weapon : MonoBehaviour
             WeaponLevel++;
 
             StatsUpdated = true;
+
             if (WeaponLevel >= Stats.Count - 1)
             {
-                //PlayerMovement.instance.fullyLevelledWeapons.Add(this);
-                PlayerMovement.instance.assignedWeapons.Remove(this);
+                PlayerController.instance.FullyLevelledWeapons.Add(this);
+                PlayerController.instance.assignedWeapons.Remove(this);
             }
         }
     }
 }
+
 [System.Serializable]
 public class WeaponStats
 {
-    public float Speed, Damage, Range, TimeBetweenAttacks, Amount, Duration;
+    public float Speed;
+    public int Damage;
+    public float Range, TimeBetweenAttacks, Amount, Duration;
     public string UpgradeText;
 }

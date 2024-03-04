@@ -13,14 +13,14 @@ public class EnemyController : MonoBehaviour
     private float HitCounter;
     private float knockBackCounter;
 
-    public float damage;
+    public int damage;
     public float HitWaitTime = 1f;
     public float health = 5f;
     public float knockBackTime = .5f;
     public int ExpToGive = 1;
 
-
-
+    public int CoinValue = 1;
+    public float CoinDropRate = .5f;
 
 
     // Start is called before the first frame update
@@ -32,14 +32,14 @@ public class EnemyController : MonoBehaviour
     }
     void Start()
     {
-        // target = FindObjectOfType<PlayerMovement>().transform;
+        // target = FindObjectOfType<PlayerController>().transform;
         target = PlayerHealthController.instance.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (PlayerMovement.instance.gameObject.activeSelf == true)
+        if (PlayerController.instance.gameObject.activeSelf)
         {
             if (knockBackCounter > 0)
             {
@@ -68,6 +68,10 @@ public class EnemyController : MonoBehaviour
             //     rb.velocity = Vector2.zero;
             // }
         }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -92,7 +96,7 @@ public class EnemyController : MonoBehaviour
         sr.flipX = target.position.x < rb.position.x;
     }
 
-    public void TakeDamage(float damageToTake)
+    public void TakeDamage(int damageToTake)
     {
         health -= damageToTake;
 
@@ -101,12 +105,16 @@ public class EnemyController : MonoBehaviour
             anim.SetBool("IsDead", true);
             Destroy(gameObject);
             ExperienceLevelController.instance.SpawnExp(transform.position, ExpToGive);
+            if (Random.value <= CoinDropRate)
+            {
+                CoinController.instance.DropCoin(transform.position, CoinValue);
+            }
         }
 
         DamageNumberController.instance.SpawnDamage(damageToTake, transform.position);
     }
 
-    public void TakeDamage(float damageToTake, bool ShouldKnockBack)
+    public void TakeDamage(int damageToTake, bool ShouldKnockBack)
     {
         TakeDamage(damageToTake);
 

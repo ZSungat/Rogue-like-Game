@@ -6,29 +6,30 @@ using TMPro;
 
 public class LevelUpSelectionButton : MonoBehaviour
 {
-    public TMP_Text UpgradeDescText, NameWeaponText, LevelWeaponText;
-    public Image WeaponIcons, DescriptionImage;
+    public Image WeaponImage, DescriptionImage;
+    public TMP_Text WeaponNameText, WeaponDescription, WeaponLevelText;
     private Weapon assignedWeapon;
 
 
     public void UpdateButtonDisplay(Weapon TheWeapon)
     {
-        if (TheWeapon.gameObject.activeSelf == true)
+        if (TheWeapon.gameObject.activeSelf)
         {
-            UpgradeDescText.text = TheWeapon.Stats[TheWeapon.WeaponLevel].UpgradeText;
-            WeaponIcons.sprite = TheWeapon.icon;
+            WeaponDescription.text = TheWeapon.Stats[TheWeapon.WeaponLevel].UpgradeText;
+            WeaponImage.sprite = TheWeapon.icon;
             DescriptionImage.sprite = TheWeapon.icon;
 
-            NameWeaponText.text = TheWeapon.name;
-            LevelWeaponText.text = "LEVEL " + TheWeapon.WeaponLevel;
+            WeaponNameText.text = TheWeapon.name;
+            WeaponLevelText.text = "LEVEL " + (TheWeapon.WeaponLevel + 1);
         }
         else
         {
-            UpgradeDescText.text = "Unlock " + TheWeapon.name;
-            WeaponIcons.sprite = TheWeapon.icon;
+            WeaponDescription.text = TheWeapon.Stats[TheWeapon.WeaponLevel].UpgradeText;
+            WeaponImage.sprite = TheWeapon.icon;
             DescriptionImage.sprite = TheWeapon.icon;
 
-            NameWeaponText.text = TheWeapon.name;
+            WeaponNameText.text = TheWeapon.name;
+            WeaponLevelText.text = "UNLOCK " + (TheWeapon.WeaponLevel + 1); // Updated to display the correct unlock level
         }
         assignedWeapon = TheWeapon;
     }
@@ -36,17 +37,28 @@ public class LevelUpSelectionButton : MonoBehaviour
     {
         if (assignedWeapon != null)
         {
-            if (assignedWeapon.gameObject.activeSelf == true)
+            if (assignedWeapon.gameObject.activeSelf)
             {
                 assignedWeapon.LevelUp();
             }
             else
             {
-                PlayerMovement.instance.AddWeapon(assignedWeapon);
+                PlayerController.instance.AddWeapon(assignedWeapon);
             }
 
             UIController.instance.LevelUpPanel.SetActive(false);
             Time.timeScale = 1f;
+        }
+    }
+    public void ConfirmUpgrade()
+    {
+        for (int i = 0; i < UIController.instance.LevelUpButtons.Length; i++)
+        {
+            if (UIController.instance.DescriptionButton[i].gameObject.activeInHierarchy)
+            {
+                UIController.instance.LevelUpButtons[i].SelectUpgrade();
+                return;
+            }
         }
     }
 }

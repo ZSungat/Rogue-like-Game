@@ -32,8 +32,6 @@ public class DamageNumberController : MonoBehaviour
     {
         int Rounded = Mathf.RoundToInt(damageAmount);
 
-        //DamageNumber NewDamage = Instantiate(NumberToSpawn, location, Quaternion.identity, NumberCanvas);
-
         DamageNumber NewDamage = GetFromPool();
 
         NewDamage.Setup(Rounded);

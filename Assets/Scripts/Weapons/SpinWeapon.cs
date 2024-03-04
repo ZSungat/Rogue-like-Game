@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class SpinWeapon : Weapon
 {
-    public float RotateSpeed;
-    public float TimeBetweenSpawn;
+    public static SpinWeapon instance;
+
+    public float RotateSpeed, TimeBetweenSpawn;
     private float SpawnCounter;
     public EnemyDamager Damager;
 
     public Transform holder, LightballToSpawn;
 
     // Start is called before the first frame update
+    void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         SetStats();
+        //UIController.instance.LevelUpButtons[0].UpdateButtonDisplay(this);
     }
 
     // Update is called once per frame
     void Update()
     {
         holder.rotation = Quaternion.Euler(0f, 0f, holder.rotation.eulerAngles.z + (RotateSpeed * Time.deltaTime * Stats[WeaponLevel].Speed));
-        // Создавать световой шар через # времени.
+        // Spawn lightball after a certain time.
         SpawnCounter -= Time.deltaTime;
         if (SpawnCounter <= 0)
         {
@@ -29,18 +35,33 @@ public class SpinWeapon : Weapon
 
             for (int i = 0; i < Stats[WeaponLevel].Amount; i++)
             {
+                // Calculate the angle based on the amount.
                 float rot = (360f / Stats[WeaponLevel].Amount) * i;
+                // Convert the angle to radians.
+                float angleRad = rot * Mathf.Deg2Rad;
 
-                Instantiate(LightballToSpawn, LightballToSpawn.position, Quaternion.Euler(0f, 0f, rot), holder).gameObject.SetActive(true);
+                // Calculate the x and y position using the angle.
+                float x = Mathf.Cos(angleRad);
+                float y = Mathf.Sin(angleRad);
 
+                // Create the position vector.
+                Vector2 position = new Vector2(x, y);
+
+                // Convert the Vector2 to a Vector3.
+                Vector3 position3D = new Vector3(position.x, position.y, 0);
+
+                // Multiply the position by the range to get the final position.
+                Vector3 finalPosition = holder.position + position3D * Stats[WeaponLevel].Range;
+
+                Instantiate(LightballToSpawn, finalPosition, Quaternion.Euler(0f, 0f, rot), holder).gameObject.SetActive(true);
                 //SFXManager.instance.PlaySFX(8);
             }
-
         }
 
-        if (StatsUpdated == true)
+        if (StatsUpdated)
         {
             StatsUpdated = false;
+
             SetStats();
         }
     }

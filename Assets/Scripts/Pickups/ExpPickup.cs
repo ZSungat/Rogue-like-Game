@@ -6,15 +6,15 @@ public class ExpPickup : MonoBehaviour
 {
     public int ExpValue;
     private bool MovingToPlayer;
-    public float MovementSpeed;
+    public float MoveSpeed;
     public float TimeBetweenChecks = .2f;
     private float checkCounter;
-    private PlayerMovement player;
+    private PlayerController player;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = PlayerHealthController.instance.GetComponent<PlayerMovement>();
+        player = PlayerHealthController.instance.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class ExpPickup : MonoBehaviour
     {
         if (MovingToPlayer == true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, MovementSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, MoveSpeed * Time.deltaTime);
         }
         else
         {
@@ -34,7 +34,7 @@ public class ExpPickup : MonoBehaviour
                 if (Vector3.Distance(transform.position, player.transform.position) < player.PickupRange)
                 {
                     MovingToPlayer = true;
-                    MovementSpeed += player.MovementSpeed;
+                    MoveSpeed += player.MoveSpeed;
                 }
             }
         }

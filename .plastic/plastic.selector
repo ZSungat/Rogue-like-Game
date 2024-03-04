@@ -1,0 +1,4 @@
+repository "Survival Rogue-like Game@szhonisov819@cloud"
+  path "/"
+    br "/main"
+    co "/main"
