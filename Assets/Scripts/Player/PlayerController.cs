@@ -63,12 +63,10 @@ public class PlayerController : MonoBehaviour
         if (moveVector.x > 0)
         {
             sr.flipX = false;
-            // transform.localScale = Vector3.one;
         }
         else
         {
             sr.flipX = true;
-            // transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         animator.SetBool("isRunning", true);
     }
@@ -78,16 +76,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isRunning", false);
     }
 
-    // public void AddWeapon(int WeaponNumber)
-    // {
-    //     if (WeaponNumber < unassignedWeapons.Count)
-    //     {
-    //         assignedWeapons.Add(unassignedWeapons[WeaponNumber]);
-
-    //         unassignedWeapons[WeaponNumber].gameObject.SetActive(true);
-    //         unassignedWeapons.RemoveAt(WeaponNumber);
-    //     }
-    // }
     public void AddWeapon(int WeaponNumber)
     {
         if (WeaponNumber < unassignedWeapons.Count)
@@ -107,4 +95,3 @@ public class PlayerController : MonoBehaviour
         unassignedWeapons.Remove(WeaponToAdd);
     }
 }
-
