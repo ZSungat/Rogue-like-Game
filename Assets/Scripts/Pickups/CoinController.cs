@@ -21,7 +21,7 @@ public class CoinController : MonoBehaviour
 
         UIController.instance.UpdateCoins();
 
-        // SFXManager.instance.PlaySFXPitched(2);
+        SFXManager.instance.PlaySFXPitched(2);
     }
 
     public void DropCoin(Vector3 Position, int Value)

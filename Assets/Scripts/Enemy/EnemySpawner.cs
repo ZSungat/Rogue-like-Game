@@ -6,8 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject EnemyToSpawn;
     public Transform MinSpawn, MaxSpawn;
-    private Transform target;
-
+    public Transform target;
     public float TimeToSpawn;
     private float SpawnCounter;
     private float deSpawnDistance;
@@ -25,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
     {
         //SpawnCounter = TimeToSpawn;
 
-        target = PlayerHealthController.instance.transform;
+        // target = PlayerHealthController.instance.transform;
 
         deSpawnDistance = Vector3.Distance(transform.position, MaxSpawn.position) + 4f;
 

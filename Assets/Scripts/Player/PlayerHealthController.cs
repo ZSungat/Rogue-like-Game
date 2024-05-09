@@ -7,6 +7,7 @@ public class PlayerHealthController : MonoBehaviour
 {
     public static PlayerHealthController instance;
     public PlayerController PlayerControllerScript;
+
     private void Awake()
     {
         instance = this;
@@ -20,6 +21,8 @@ public class PlayerHealthController : MonoBehaviour
     public Sprite emptyHeart;
 
     public GameObject DeathEffect;
+
+    private bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +38,19 @@ public class PlayerHealthController : MonoBehaviour
         {
             CurrentHealth = NumberOfHearts;
         }
+
+        // Check if CurrentHealth is zero or below to set empty hearts
+        if (CurrentHealth <= 0 && !isDead)
+        {
+            isDead = true;
+            StartCoroutine(DeactivatePlayer());
+            return; // Exit Update to prevent further heart updates
+        }
+
+        // Display hearts based on CurrentHealth
         for (int i = 0; i < Hearts.Length; i++)
         {
-            if (i < CurrentHealth)
+            if (i < Mathf.CeilToInt(CurrentHealth))
             {
                 Hearts[i].sprite = FullHeart;
             }
@@ -56,22 +69,26 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
+    IEnumerator DeactivatePlayer()
+    {
+        yield return new WaitForSeconds(0.1f); // Adjust the delay as needed
+        PlayerControllerScript.OnDisable();
+        LevelManager.instance.EndLevel();
+        SFXManager.instance.PlaySFX(11);
+        Instantiate(DeathEffect, transform.position, transform.rotation);
+        gameObject.SetActive(false);
+    }
+
     public void TakeDamage(int DamageToTake)
     {
         CurrentHealth -= DamageToTake;
+        SFXManager.instance.PlaySFX(10);
 
-        if (CurrentHealth <= 0)
+        if (CurrentHealth <= 0 && !isDead)
         {
-            CurrentHealth = Mathf.FloorToInt(CurrentHealth--);
-
-            PlayerControllerScript.OnDisable();
-
+            isDead = true;
+            StartCoroutine(DeactivatePlayer());
             LevelManager.instance.EndLevel();
-
-            Instantiate(DeathEffect, transform.position, transform.rotation);
-
-            Time.timeScale = 0;
-            gameObject.SetActive(false);
         }
     }
 }

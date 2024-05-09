@@ -12,6 +12,9 @@ public class LevelManager : MonoBehaviour
     }
     private bool GameActive;
     public float Timer;
+
+    public float WaitToShowEndScreen = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +28,30 @@ public class LevelManager : MonoBehaviour
         {
             Timer += Time.deltaTime;
             UIController.instance.UpdateTimer(Timer);
+
+
+            // SFXManager.instance.StopAllAudio();
+            // SFXManager.instance.currentPlayingMusic.Stop();
+            // SFXManager.instance.PlayRandomMusic();
         }
     }
+
     public void EndLevel()
     {
         GameActive = false;
 
-        // StartCoroutine(EndLevelCo());
+        StartCoroutine(EndLevelCo());
+        SFXManager.instance.PlaySFX(12);
+    }
+
+    IEnumerator EndLevelCo()
+    {
+        yield return new WaitForSeconds(WaitToShowEndScreen);
+
+        float minutes = Mathf.FloorToInt(Timer / 60f);
+        float seconds = Mathf.FloorToInt(Timer % 60);
+
+        UIController.instance.EndTimeText.text = minutes.ToString() + " mins " + seconds.ToString("00" + " secs");
+        UIController.instance.LevelEndScreen.SetActive(true);
     }
 }

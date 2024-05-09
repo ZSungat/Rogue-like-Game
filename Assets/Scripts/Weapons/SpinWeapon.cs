@@ -35,6 +35,13 @@ public class SpinWeapon : Weapon
 
             for (int i = 0; i < Stats[WeaponLevel].Amount; i++)
             {
+                // Additional check to prevent spawning if max limit is reached
+                if (spawnedWeapons.Count >= Stats[WeaponLevel].Amount)
+                {
+                    Debug.LogWarning("Max weapons reached!");
+                    break; // Exit the loop
+                }
+
                 // Calculate the angle based on the amount.
                 float rot = (360f / Stats[WeaponLevel].Amount) * i;
                 // Convert the angle to radians.
@@ -54,7 +61,7 @@ public class SpinWeapon : Weapon
                 Vector3 finalPosition = holder.position + position3D * Stats[WeaponLevel].Range;
 
                 Instantiate(LightballToSpawn, finalPosition, Quaternion.Euler(0f, 0f, rot), holder).gameObject.SetActive(true);
-                //SFXManager.instance.PlaySFX(8);
+                SFXManager.instance.PlaySFX(7);
             }
         }
 
@@ -72,7 +79,6 @@ public class SpinWeapon : Weapon
 
         transform.localScale = Vector3.one * Stats[WeaponLevel].Range;
 
-        TimeBetweenSpawn = Stats[WeaponLevel].TimeBetweenAttacks;
 
         Damager.LifeTime = Stats[WeaponLevel].Duration;
 

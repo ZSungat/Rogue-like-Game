@@ -13,16 +13,20 @@ public class UIController : MonoBehaviour
         instance = this;
     }
     public Slider ExpLevelSlider;
+
     public GameObject LevelUpPanel;
     public GameObject PauseScreen;
+    public GameObject LevelEndScreen;
+    public LevelUpSelectionButton[] LevelUpButtons;
+    public GameObject[] DescriptionButton;
 
+
+    public TMP_Text EndTimeText;
     public TMP_Text ExpLevelText;
     public TMP_Text CoinText;
     public TMP_Text TimeText;
 
-    public LevelUpSelectionButton[] LevelUpButtons;
-    public GameObject[] DescriptionButton;
-
+    public string MainMenuName;
 
     public PlayerStatUpgradeDisplay MoveSpeedUpgradeDisplay, HealthUpgradeDisplay, PickupRangeUpgradeDisplay, MaxWeaponsUpgradeDisplay;
 
@@ -33,6 +37,30 @@ public class UIController : MonoBehaviour
         {
             PauseUnpause();
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Restart();
+        }
+
+
+
+
+        // if (Input.GetKeyDown(Keyboard.LeftControl) && Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     Restart();
+        // }
+        // if (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Alpha2))
+        // {
+        //     Restart();
+        // }
+        // if (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Alpha3))
+        // {
+        //     Restart();
+        // }
+        // if (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Alpha4))
+        // {
+        //     Restart();
+        // }
     }
     public void UpdateExperience(int CurrentExp, int LevelExp, int CurrentLevel)
     {
@@ -46,10 +74,6 @@ public class UIController : MonoBehaviour
         LevelUpPanel.SetActive(false);
         Time.timeScale = 1f;
     }
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
     public void UpdateCoins()
     {
         CoinText.text = "Coins: " + CoinController.instance.CurrentCoins;
@@ -59,7 +83,7 @@ public class UIController : MonoBehaviour
 
 
 
-    
+
     public void PurchaseMoveSpeed()
     {
         PlayerStatController.instance.PurchaseMoveSpeed();
@@ -97,22 +121,34 @@ public class UIController : MonoBehaviour
 
         TimeText.text = "Time: " + minutes + ":" + seconds.ToString("00");
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
     }
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(MainMenuName);
+        Time.timeScale = 1f;
+    }
     public void PauseUnpause()
     {
         if (PauseScreen.activeSelf == false)
         {
+            SFXManager.instance.StopMusic();
             PauseScreen.SetActive(true);
             Time.timeScale = 0f;
         }
         else
         {
             PauseScreen.SetActive(false);
+            SFXManager.instance.PlayMusic(SFXManager.instance.currentIndex);
+
             if (LevelUpPanel.activeSelf == false)
             {
                 Time.timeScale = 1f;
