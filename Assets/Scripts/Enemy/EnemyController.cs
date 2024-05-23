@@ -10,63 +10,86 @@ public class EnemyController : MonoBehaviour
     private SpriteRenderer sr;
 
     public float moveSpeed;
-    private float HitCounter;
+    private float initialMoveSpeed;
+    private float hitCounter;
     private float knockBackCounter;
-
     public int damage;
-    public float HitWaitTime = 1f;
+    public float hitWaitTime = 1f;
     public float health = 5f;
+    public float maxHealth = 5f;
     public float knockBackTime = .5f;
-    public int ExpToGive = 1;
+    public int expToGive = 1;
+    public int coinValue = 1;
+    public float coinDropRate = .5f;
+    private EnemyHealthBar healthBar;
+    [SerializeField] private Vector3 healthBarOffset = new Vector3(0, 1, 0);
 
-    public int CoinValue = 1;
-    public float CoinDropRate = .5f;
+    public bool isRangedEnemy;
+    public float stoppingDistance;
 
-
-    // Start is called before the first frame update
-
-    void Awake()
+    private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
+
     void Start()
     {
-        // target = FindObjectOfType<PlayerController>().transform;
         target = PlayerHealthController.instance.transform;
+        rb = GetComponent<Rigidbody2D>();
+        initialMoveSpeed = moveSpeed;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Tick()
     {
         if (PlayerController.instance.gameObject.activeSelf)
         {
             if (knockBackCounter > 0)
             {
                 knockBackCounter -= Time.deltaTime;
-
-                if (moveSpeed > 0)
-                {
-                    moveSpeed = -moveSpeed * 2f;
-                    anim.SetBool("IsHit", true);
-                }
-
                 if (knockBackCounter <= 0)
                 {
-                    moveSpeed = Mathf.Abs(moveSpeed * .5f);
+                    moveSpeed = initialMoveSpeed;
                     anim.SetBool("IsHit", false);
                 }
             }
-            rb.velocity = (target.position - transform.position).normalized * moveSpeed;
-
-            if (HitCounter > 0f)
+            else
             {
-                HitCounter -= Time.deltaTime;
+                float distanceToTarget = Vector2.Distance(transform.position, target.position);
+                Vector2 direction;
+
+                if (!isRangedEnemy)
+                {
+                    direction = (target.position - transform.position).normalized;
+                    rb.velocity = direction * moveSpeed;
+                    anim.SetBool("IsMoving", true);
+                }
+                else
+                {
+                    if (distanceToTarget > stoppingDistance)
+                    {
+                        direction = (target.position - transform.position).normalized;
+                        rb.velocity = direction * moveSpeed;
+                        anim.SetBool("IsMoving", true);
+                    }
+                    else if (distanceToTarget < stoppingDistance)
+                    {
+                        direction = (transform.position - target.position).normalized;
+                        rb.velocity = direction * moveSpeed; // Move away from the player
+                        anim.SetBool("IsMoving", true);
+                    }
+                    else
+                    {
+                        rb.velocity = Vector2.zero;
+                        anim.SetBool("IsMoving", false);
+                    }
+                }
             }
-            // else
-            // {
-            //     rb.velocity = Vector2.zero;
-            // }
+
+            if (hitCounter > 0f)
+            {
+                hitCounter -= Time.deltaTime;
+            }
         }
         else
         {
@@ -76,21 +99,23 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player" && HitCounter <= 0f)
+        if (collision.gameObject.tag == "Player" && hitCounter <= 0f)
         {
             PlayerHealthController.instance.TakeDamage(damage);
-
-            HitCounter = HitWaitTime;
+            hitCounter = hitWaitTime;
         }
     }
+
     private void OnEnable()
     {
-        anim.SetBool("IsMoving", true);
+        Ticker.OnTickAction += Tick;
     }
+
     private void OnDisable()
     {
-        anim.SetBool("IsMoving", false);
+        Ticker.OnTickAction -= Tick;
     }
+
     private void LateUpdate()
     {
         sr.flipX = target.position.x < rb.position.x;
@@ -99,28 +124,44 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(int damageToTake)
     {
         health -= damageToTake;
+        healthBar.UpdateHealthBar(health / maxHealth);
+        anim.SetTrigger("Hit"); // Set the trigger for the hit animation
 
         if (health <= 0)
         {
-            anim.SetBool("IsDead", true);
             Destroy(gameObject);
-            ExperienceLevelController.instance.SpawnExp(transform.position, ExpToGive);
-            if (Random.value <= CoinDropRate)
+            ExperienceLevelController.instance.SpawnExp(transform.position, expToGive);
+            if (Random.value <= coinDropRate)
             {
-                CoinController.instance.DropCoin(transform.position, CoinValue);
+                CoinController.instance.DropCoin(transform.position, coinValue);
             }
+            SFXManager.instance.PlaySFXPitched(0);
+            Destroy(healthBar.gameObject); // Destroy health bar when enemy dies
+        }
+        else
+        {
+            SFXManager.instance.PlaySFXPitched(1);
         }
 
         DamageNumberController.instance.SpawnDamage(damageToTake, transform.position);
     }
 
-    public void TakeDamage(int damageToTake, bool ShouldKnockBack)
+    public void TakeDamage(int damageToTake, bool shouldKnockBack)
     {
         TakeDamage(damageToTake);
 
-        if (ShouldKnockBack == true)
+        if (shouldKnockBack)
         {
             knockBackCounter = knockBackTime;
+            moveSpeed = -initialMoveSpeed * 2f; // Apply knockback by reversing and increasing speed
+            anim.SetBool("IsHit", true);
         }
+    }
+
+    public void SetHealthBar(EnemyHealthBar newHealthBar)
+    {
+        healthBar = newHealthBar;
+        healthBar.Initialize(transform, healthBarOffset);
+        healthBar.UpdateHealthBar(health / maxHealth);
     }
 }

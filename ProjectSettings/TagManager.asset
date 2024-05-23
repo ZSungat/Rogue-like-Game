@@ -7,17 +7,18 @@ TagManager:
   - Terrain
   - Area
   - Enemy
-  - Bullet
+  - Weapon
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Map
   - Water
   - UI
   - Enemy
-  - 
-  - 
+  - Player
+  - Weapon
   - 
   - 
   - 
@@ -48,11 +49,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Enemy
-    uniqueID: 667529737
+  - name: Map
+    uniqueID: 3027354777
     locked: 0
-  - name: Pickups
-    uniqueID: 3817573763
+  - name: UI
+    uniqueID: 2321269315
     locked: 0
   - name: Weapons
     uniqueID: 3613750081
@@ -60,6 +61,9 @@ TagManager:
   - name: Player
     uniqueID: 3754428585
     locked: 0
-  - name: UI
-    uniqueID: 2321269315
+  - name: Enemy
+    uniqueID: 667529737
+    locked: 0
+  - name: Pickups
+    uniqueID: 3817573763
     locked: 0

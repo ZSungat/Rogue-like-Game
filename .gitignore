@@ -46,7 +46,12 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
-
+*.plastic/
+*/.plastic/
+*.utmp/
+*/.utmp/
+*ignore.conf/
+*/ignore.conf/
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta

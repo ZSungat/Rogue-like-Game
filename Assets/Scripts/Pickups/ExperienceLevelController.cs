@@ -35,7 +35,7 @@ public class ExperienceLevelController : MonoBehaviour
 
         UIController.instance.UpdateExperience(CurrentExperience, ExpLevels[CurrentLevel], CurrentLevel);
 
-        // SFXManager.instance.PlaySFXPitched(2);
+        SFXManager.instance.PlaySFXPitched(2);
     }
     public void SpawnExp(Vector3 position, int ExpValue)
     {
@@ -52,7 +52,7 @@ public class ExperienceLevelController : MonoBehaviour
         {
             CurrentLevel = ExpLevels.Count - 1;
         }
-        
+
         UIController.instance.LevelUpPanel.SetActive(true);
 
         Time.timeScale = 0f;

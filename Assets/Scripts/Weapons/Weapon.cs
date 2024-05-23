@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +11,8 @@ public class Weapon : MonoBehaviour
 
     public Sprite icon;
 
+    public List<GameObject> spawnedWeapons = new List<GameObject>();
+
     public void LevelUp()
     {
         if (WeaponLevel < Stats.Count - 1)
@@ -24,6 +25,40 @@ public class Weapon : MonoBehaviour
             {
                 PlayerController.instance.FullyLevelledWeapons.Add(this);
                 PlayerController.instance.assignedWeapons.Remove(this);
+            }
+        }
+    }
+
+    public bool CanSpawn()
+    {
+        bool canSpawn = spawnedWeapons.Count < Stats[WeaponLevel].Amount;
+        return canSpawn;
+    }
+
+
+    public void SpawnWeapon(GameObject weaponPrefab, Vector3 position, Quaternion rotation)
+    {
+        if (CanSpawn())
+        {
+            GameObject spawnedWeapon = Instantiate(weaponPrefab, position, rotation, transform);
+            spawnedWeapons.Add(spawnedWeapon);
+        }
+        else
+        {
+            Debug.LogWarning("Max weapons reached!");
+        }
+    }
+
+    public void RemoveExcessWeapons()
+    {
+        if (spawnedWeapons.Count > Stats[WeaponLevel].Amount)
+        {
+            int excessCount = spawnedWeapons.Count - (int)Stats[WeaponLevel].Amount;
+            for (int i = 0; i < excessCount; i++)
+            {
+                GameObject excessWeapon = spawnedWeapons[0];
+                spawnedWeapons.RemoveAt(0);
+                Destroy(excessWeapon);
             }
         }
     }

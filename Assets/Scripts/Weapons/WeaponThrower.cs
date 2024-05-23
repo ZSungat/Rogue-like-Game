@@ -33,7 +33,7 @@ public class WeaponThrower : Weapon
                 Instantiate(Damager, Damager.transform.position, Damager.transform.rotation).gameObject.SetActive(true);
             }
 
-            // SFXManager.instance.PlaySFXPitched(4);
+            SFXManager.instance.PlaySFXPitched(5);
         }
     }
 

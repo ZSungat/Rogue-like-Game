@@ -1,142 +1,196 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject EnemyToSpawn;
+    public TMP_Text waveNumberText; // Reference to the TMP_Text object for wave number
+    public EnemyHealthBar healthBarSlider;
+    public Transform HealthCanvasTransform; // Reference to the canvas where health bars should be added
     public Transform MinSpawn, MaxSpawn;
-    private Transform target;
+    public Transform target;
+    public int CheckPerFrame = 5;
 
-    public float TimeToSpawn;
-    private float SpawnCounter;
+    private List<GameObject> spawnedEnemies = new List<GameObject>();
+    public List<WaveInfo> waves;
+    private int currentWave = -1;
+    private float waveCounter;
+    private int enemyToCheck;
     private float deSpawnDistance;
-    public int CheckPerFrame;
-    private int EnemyToCheck;
+    private bool isSpawning;
+    private Coroutine spawnCoroutine;
 
-    private List<GameObject> SpawnedEnemies = new List<GameObject>();
-    public List<WaveInfo> Waves;
-
-    private int CurrentWave;
-    private float WaveCounter;
-
-    // Start is called before the first frame update
     void Start()
     {
-        //SpawnCounter = TimeToSpawn;
-
-        target = PlayerHealthController.instance.transform;
-
         deSpawnDistance = Vector3.Distance(transform.position, MaxSpawn.position) + 4f;
-
-        CurrentWave = -1;
         GoToNextWave();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (PlayerHealthController.instance.gameObject.activeSelf)
         {
-            if (CurrentWave < Waves.Count)
+            if (currentWave < waves.Count)
             {
-                WaveCounter -= Time.deltaTime;
-                if (WaveCounter <= 0)
+                waveCounter -= Time.deltaTime;
+                if (waveCounter <= 0)
                 {
                     GoToNextWave();
                 }
-                SpawnCounter -= Time.deltaTime;
-                if (SpawnCounter <= 0)
+
+                if (!isSpawning && waveCounter > 0)
                 {
-                    SpawnCounter = Waves[CurrentWave].TimeBetweenSpawns;
-                    GameObject NewEnemy = Instantiate(Waves[CurrentWave].EnemyToSpawn, SelectSpawnPoint(), Quaternion.identity);
-                    SpawnedEnemies.Add(NewEnemy);
+                    spawnCoroutine = StartCoroutine(SpawnEnemies());
                 }
+            }
+        }
+        else
+        {
+            if (isSpawning)
+            {
+                StopCoroutine(spawnCoroutine);
+                isSpawning = false;
             }
         }
 
         transform.position = target.position;
-        int CheckTarget = EnemyToCheck + CheckPerFrame;
-        while (EnemyToCheck < CheckTarget)
+        CheckAndRemoveEnemies();
+    }
+
+    IEnumerator SpawnEnemies()
+    {
+        isSpawning = true;
+        WaveInfo wave = waves[currentWave];
+
+        int totalEnemies = wave.GetTotalEnemyCount();
+        int spawnedCount = 0;
+
+        while (spawnedCount < totalEnemies && waveCounter > 0 && PlayerHealthController.instance.gameObject.activeSelf)
         {
-            if (EnemyToCheck < SpawnedEnemies.Count)
+            EnemyInfo enemyInfo = wave.GetRandomEnemyInfo();
+            Vector3 spawnPoint = SelectSpawnPoint();
+            GameObject newEnemy = Instantiate(enemyInfo.enemyPrefab, spawnPoint, Quaternion.identity);
+            spawnedEnemies.Add(newEnemy);
+
+            // Create and set up health bar for the new enemy
+            EnemyHealthBar newHealthBar = Instantiate(healthBarSlider, HealthCanvasTransform);
+            newEnemy.GetComponent<EnemyController>().SetHealthBar(newHealthBar);
+
+            spawnedCount++;
+            yield return new WaitForSeconds(wave.timeBetweenSpawns);
+        }
+
+        isSpawning = false;
+    }
+
+    private void CheckAndRemoveEnemies()
+    {
+        int checkTarget = enemyToCheck + CheckPerFrame;
+        while (enemyToCheck < checkTarget)
+        {
+            if (enemyToCheck < spawnedEnemies.Count)
             {
-                if (SpawnedEnemies[EnemyToCheck] != null)
+                if (spawnedEnemies[enemyToCheck] != null)
                 {
-                    if (Vector3.Distance(transform.position, SpawnedEnemies[EnemyToCheck].transform.position) > deSpawnDistance)
+                    if (Vector3.Distance(transform.position, spawnedEnemies[enemyToCheck].transform.position) > deSpawnDistance)
                     {
-                        Destroy(SpawnedEnemies[EnemyToCheck]);
-                        SpawnedEnemies.RemoveAt(EnemyToCheck);
-                        CheckTarget--;
+                        Destroy(spawnedEnemies[enemyToCheck]);
+                        spawnedEnemies.RemoveAt(enemyToCheck);
+                        checkTarget--;
                     }
                     else
                     {
-                        EnemyToCheck++;
+                        enemyToCheck++;
                     }
                 }
                 else
                 {
-                    SpawnedEnemies.RemoveAt(EnemyToCheck);
-                    CheckTarget--;
+                    spawnedEnemies.RemoveAt(enemyToCheck);
+                    checkTarget--;
                 }
             }
             else
             {
-                EnemyToCheck = 0;
-                CheckTarget = 0;
+                enemyToCheck = 0;
+                break;
             }
         }
     }
 
     public Vector3 SelectSpawnPoint()
     {
-        Vector3 SpawnPoint = Vector3.zero;
-        bool SpawnVerticalEdge = Random.Range(0f, 1f) > .5f;
-        if (SpawnVerticalEdge)
+        Vector3 spawnPoint = Vector3.zero;
+        bool spawnVerticalEdge = Random.Range(0f, 1f) > .5f;
+        if (spawnVerticalEdge)
         {
-            SpawnPoint.y = Random.Range(MinSpawn.position.y, MaxSpawn.position.y);
-            if (Random.Range(0f, 1f) > .5f)
-            {
-                SpawnPoint.x = MaxSpawn.position.x;
-            }
-            else
-            {
-                SpawnPoint.x = MinSpawn.position.x;
-            }
+            spawnPoint.y = Random.Range(MinSpawn.position.y, MaxSpawn.position.y);
+            spawnPoint.x = Random.Range(0f, 1f) > .5f ? MaxSpawn.position.x : MinSpawn.position.x;
         }
         else
         {
-            SpawnPoint.x = Random.Range(MinSpawn.position.x, MaxSpawn.position.x);
-            if (Random.Range(0f, 1f) > .5f)
-            {
-                SpawnPoint.y = MaxSpawn.position.y;
-            }
-            else
-            {
-                SpawnPoint.y = MinSpawn.position.y;
-            }
+            spawnPoint.x = Random.Range(MinSpawn.position.x, MaxSpawn.position.x);
+            spawnPoint.y = Random.Range(0f, 1f) > .5f ? MaxSpawn.position.y : MinSpawn.position.y;
         }
-
-        return SpawnPoint;
+        return spawnPoint;
     }
+
     public void GoToNextWave()
     {
-        CurrentWave++;
+        currentWave++;
 
-        if (CurrentWave >= Waves.Count)
+        if (currentWave >= waves.Count)
         {
-            CurrentWave = Waves.Count - 1;
+            currentWave = waves.Count - 1;
         }
-        WaveCounter = Waves[CurrentWave].WaveLength;
-        SpawnCounter = Waves[CurrentWave].TimeBetweenSpawns;
+        waveCounter = waves[currentWave].waveLength;
+
+        // Update wave number text
+        if (waveNumberText != null)
+        {
+            waveNumberText.text = "Wave " + (currentWave + 1).ToString();
+        }
     }
 }
-
 
 [System.Serializable]
 public class WaveInfo
 {
-    public GameObject EnemyToSpawn;
-    public float WaveLength = 10f;
-    public float TimeBetweenSpawns = 1f;
+    public List<EnemyInfo> enemies;
+    public float waveLength = 10f;
+    public float timeBetweenSpawns = 1f;
+
+    // Get total count of all enemies in this wave
+    public int GetTotalEnemyCount()
+    {
+        int total = 0;
+        foreach (var enemyInfo in enemies)
+        {
+            total += enemyInfo.count;
+        }
+        return total;
+    }
+
+    // Get a random enemy info from the list, weighted by count
+    public EnemyInfo GetRandomEnemyInfo()
+    {
+        int totalEnemies = GetTotalEnemyCount();
+        int randomIndex = Random.Range(0, totalEnemies);
+        foreach (var enemyInfo in enemies)
+        {
+            if (randomIndex < enemyInfo.count)
+            {
+                return enemyInfo;
+            }
+            randomIndex -= enemyInfo.count;
+        }
+        return enemies[0]; // Fallback, should not reach here
+    }
+}
+
+[System.Serializable]
+public class EnemyInfo
+{
+    public GameObject enemyPrefab;
+    public int count;
 }
