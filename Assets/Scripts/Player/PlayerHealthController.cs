@@ -87,7 +87,6 @@ public class PlayerHealthController : MonoBehaviour
         if (CurrentHealth <= 0 && !isDead)
         {
             isDead = true;
-
             StartCoroutine(DeactivatePlayer());
             LevelManager.instance.EndLevel();
         }
