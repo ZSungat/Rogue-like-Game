@@ -15,7 +15,6 @@ public class EnemyDamager : MonoBehaviour
 
     void Start()
     {
-        // Set initial size to Min Size
         transform.localScale = Vector3.one * GrowthSize.x;
         TargetSize = Vector3.one * GrowthSize.y;
     }
@@ -33,10 +32,8 @@ public class EnemyDamager : MonoBehaviour
 
     void GrowProjectile()
     {
-        // Clamp growth size between Min Size and Max Size
         TargetSize = Vector3.Max(Vector3.Min(TargetSize, Vector3.one * GrowthSize.y), Vector3.one * GrowthSize.x);
 
-        // Check if the object is not already at max size
         if (transform.localScale.magnitude < TargetSize.magnitude)
         {
             transform.localScale = Vector3.MoveTowards(transform.localScale, TargetSize, GrowSpeed * Time.deltaTime);
@@ -78,26 +75,38 @@ public class EnemyDamager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!DamageOverTime && collision.tag == "Enemy")
+        if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<EnemyController>().TakeDamage(DamageAmount, ShouldKnockBack);
+            EnemyController enemy = collision.GetComponent<EnemyController>();
 
-            if (DestroyOnImpact)
+            if (enemy != null)
             {
-                DestroyProjectile();
+                if (!DamageOverTime)
+                {
+                    enemy.TakeDamage(DamageAmount, ShouldKnockBack);
+
+                    if (DestroyOnImpact)
+                    {
+                        DestroyProjectile();
+                    }
+                }
+                else
+                {
+                    EnemiesInRange.Add(enemy);
+                }
             }
-        }
-        else if (DamageOverTime && collision.tag == "Enemy")
-        {
-            EnemiesInRange.Add(collision.GetComponent<EnemyController>());
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (DamageOverTime && collision.tag == "Enemy")
+        if (DamageOverTime && collision.CompareTag("Enemy"))
         {
-            EnemiesInRange.Remove(collision.GetComponent<EnemyController>());
+            EnemyController enemy = collision.GetComponent<EnemyController>();
+            if (enemy != null)
+            {
+                EnemiesInRange.Remove(enemy);
+            }
         }
     }
 

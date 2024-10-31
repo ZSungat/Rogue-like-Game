@@ -1,0 +1,494 @@
+fileFormatVersion: 2
+guid: 812a986d1f0ffb14f8c48d0b5650c69a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6890500730450115954
+    second: Part 2 F_0
+  - first:
+      213: -7472568708332719258
+    second: Part 2 F_1
+  - first:
+      213: -5720627688675384842
+    second: Part 2 F_2
+  - first:
+      213: -3126210883182294045
+    second: Part 2 F_3
+  - first:
+      213: 2202293225152198315
+    second: Part 2 F_4
+  - first:
+      213: 5972497358873212153
+    second: Part 2 F_5
+  - first:
+      213: 1887247797667648442
+    second: Part 2 F_6
+  - first:
+      213: -4319051452520695711
+    second: Part 2 F_7
+  - first:
+      213: 2071975703616655052
+    second: Part 2 F_8
+  - first:
+      213: 1863532395489085902
+    second: Part 2 F_9
+  - first:
+      213: -7221057006273991794
+    second: Part 2 F_10
+  - first:
+      213: 3999818356090177549
+    second: Part 2 F_11
+  - first:
+      213: 1248038112658133487
+    second: Part 2 F_12
+  - first:
+      213: -6016508516548028915
+    second: Part 2 F_13
+  - first:
+      213: 4805994243138040038
+    second: Part 2 F_14
+  - first:
+      213: -5946251804702134321
+    second: Part 2 F_15
+  - first:
+      213: 1259827235503513526
+    second: Part 2 F_16
+  - first:
+      213: 202323654893682364
+    second: Part 2 F_17
+  - first:
+      213: -1320435388902157565
+    second: Part 2 F_18
+  - first:
+      213: -9051135696965404575
+    second: Part 2 F_19
+  - first:
+      213: -7518880811280450405
+    second: Part 2 F_20
+  - first:
+      213: -3579508382321537918
+    second: Part 2 F_21
+  - first:
+      213: 7410903397430490380
+    second: Part 2 F_22
+  - first:
+      213: 7119964562414689712
+    second: Part 2 F_23
+  - first:
+      213: -3680718488111767462
+    second: Part 2 F_24
+  - first:
+      213: 5821309574164846933
+    second: Part 2 F_25
+  - first:
+      213: 4778665816756568122
+    second: Part 2 F_26
+  - first:
+      213: -7023583717204059221
+    second: Part 2 F_27
+  - first:
+      213: 4099936120223088167
+    second: Part 2 F_28
+  - first:
+      213: -7305295813065423392
+    second: Part 2 F_29
+  - first:
+      213: -2416752262246617014
+    second: Part 2 F_30
+  - first:
+      213: -8801843544841995568
+    second: Part 2 F_31
+  - first:
+      213: 3657677953024181478
+    second: Part 2 F_32
+  - first:
+      213: -3942776569796729314
+    second: Part 2 F_33
+  - first:
+      213: -7196830076711383495
+    second: Part 2 F_34
+  - first:
+      213: 7770789135738376320
+    second: Part 2 F_35
+  - first:
+      213: -2861191196822975954
+    second: Part 2 F_36
+  - first:
+      213: -4795261449146554937
+    second: Part 2 F_37
+  - first:
+      213: 2023476381317971966
+    second: Part 2 F_38
+  - first:
+      213: 3102859639780744579
+    second: Part 2 F_39
+  - first:
+      213: 5320870571427155075
+    second: Part 2 F_40
+  - first:
+      213: 4361492992300362049
+    second: Part 2 F_41
+  - first:
+      213: -7466428395582240016
+    second: Part 2 F_42
+  - first:
+      213: -8231918836110294290
+    second: Part 2 F_43
+  - first:
+      213: 6694531842139800178
+    second: Part 2 F_44
+  - first:
+      213: -9180023626020014601
+    second: Part 2 F_45
+  - first:
+      213: 5010332356913401331
+    second: Part 2 F_46
+  - first:
+      213: 1730842622060335797
+    second: Part 2 F_47
+  - first:
+      213: -8144104679446524857
+    second: Part 2 F_48
+  - first:
+      213: -6801917560498470256
+    second: Part 2 F_49
+  - first:
+      213: 6654590672106795873
+    second: Part 2 F_50
+  - first:
+      213: 6595095145644171975
+    second: Part 2 F_51
+  - first:
+      213: 6429955931671400434
+    second: Part 2 F_52
+  - first:
+      213: -8080482634923089827
+    second: Part 2 F_53
+  - first:
+      213: -4129577353435594230
+    second: Part 2 F_54
+  - first:
+      213: -6139869560066460503
+    second: Part 2 F_55
+  - first:
+      213: 1076755538907362245
+    second: Part 2 F_56
+  - first:
+      213: -3976842948741819004
+    second: Part 2 F_57
+  - first:
+      213: 6322598564477428993
+    second: Part 2 F_58
+  - first:
+      213: -3511370083917004934
+    second: Part 2 F_59
+  - first:
+      213: -6821660424550438082
+    second: Part 2 F_60
+  - first:
+      213: 5150185040270253569
+    second: Part 2 F_61
+  - first:
+      213: 1514434378666279332
+    second: Part 2 F_62
+  - first:
+      213: -9102094483050222801
+    second: Part 2 F_63
+  - first:
+      213: 681629686944055512
+    second: Part 2 F_64
+  - first:
+      213: 5374070043130048796
+    second: Part 2 F_65
+  - first:
+      213: 3866156574652073548
+    second: Part 2 F_66
+  - first:
+      213: 1363648808875010707
+    second: Part 2 F_67
+  - first:
+      213: 3595171581600360654
+    second: Part 2 F_68
+  - first:
+      213: 3166403690582306011
+    second: Part 2 F_69
+  - first:
+      213: -3623742683716388303
+    second: Part 2 F_70
+  - first:
+      213: 3345426197767147808
+    second: Part 2 F_71
+  - first:
+      213: 815993918143949151
+    second: Part 2 F_72
+  - first:
+      213: 5143889158123769740
+    second: Part 2 F_73
+  - first:
+      213: -2341158822712922246
+    second: Part 2 F_74
+  - first:
+      213: -553212527456411363
+    second: Part 2 F_75
+  - first:
+      213: 5941749548773563482
+    second: Part 2 F_76
+  - first:
+      213: -5805315644335707629
+    second: Part 2 F_77
+  - first:
+      213: 177692500332922202
+    second: Part 2 F_78
+  - first:
+      213: 1676830800988151523
+    second: Part 2 F_79
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Part 2 F_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 273
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a403baa3f98f57ed0800000000000000
+      internalID: -2416752262246617014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 4867a5427f1d0d643ac64cf487b40e2f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Part 2 F_0: -6890500730450115954
+      Part 2 F_1: -7472568708332719258
+      Part 2 F_10: -7221057006273991794
+      Part 2 F_11: 3999818356090177549
+      Part 2 F_12: 1248038112658133487
+      Part 2 F_13: -6016508516548028915
+      Part 2 F_14: 4805994243138040038
+      Part 2 F_15: -5946251804702134321
+      Part 2 F_16: 1259827235503513526
+      Part 2 F_17: 202323654893682364
+      Part 2 F_18: -1320435388902157565
+      Part 2 F_19: -9051135696965404575
+      Part 2 F_2: -5720627688675384842
+      Part 2 F_20: -7518880811280450405
+      Part 2 F_21: -3579508382321537918
+      Part 2 F_22: 7410903397430490380
+      Part 2 F_23: 7119964562414689712
+      Part 2 F_24: -3680718488111767462
+      Part 2 F_25: 5821309574164846933
+      Part 2 F_26: 4778665816756568122
+      Part 2 F_27: -7023583717204059221
+      Part 2 F_28: 4099936120223088167
+      Part 2 F_29: -7305295813065423392
+      Part 2 F_3: -3126210883182294045
+      Part 2 F_30: -2416752262246617014
+      Part 2 F_31: -8801843544841995568
+      Part 2 F_32: 3657677953024181478
+      Part 2 F_33: -3942776569796729314
+      Part 2 F_34: -7196830076711383495
+      Part 2 F_35: 7770789135738376320
+      Part 2 F_36: -2861191196822975954
+      Part 2 F_37: -4795261449146554937
+      Part 2 F_38: 2023476381317971966
+      Part 2 F_39: 3102859639780744579
+      Part 2 F_4: 2202293225152198315
+      Part 2 F_40: 5320870571427155075
+      Part 2 F_41: 4361492992300362049
+      Part 2 F_42: -7466428395582240016
+      Part 2 F_43: -8231918836110294290
+      Part 2 F_44: 6694531842139800178
+      Part 2 F_45: -9180023626020014601
+      Part 2 F_46: 5010332356913401331
+      Part 2 F_47: 1730842622060335797
+      Part 2 F_48: -8144104679446524857
+      Part 2 F_49: -6801917560498470256
+      Part 2 F_5: 5972497358873212153
+      Part 2 F_50: 6654590672106795873
+      Part 2 F_51: 6595095145644171975
+      Part 2 F_52: 6429955931671400434
+      Part 2 F_53: -8080482634923089827
+      Part 2 F_54: -4129577353435594230
+      Part 2 F_55: -6139869560066460503
+      Part 2 F_56: 1076755538907362245
+      Part 2 F_57: -3976842948741819004
+      Part 2 F_58: 6322598564477428993
+      Part 2 F_59: -3511370083917004934
+      Part 2 F_6: 1887247797667648442
+      Part 2 F_60: -6821660424550438082
+      Part 2 F_61: 5150185040270253569
+      Part 2 F_62: 1514434378666279332
+      Part 2 F_63: -9102094483050222801
+      Part 2 F_64: 681629686944055512
+      Part 2 F_65: 5374070043130048796
+      Part 2 F_66: 3866156574652073548
+      Part 2 F_67: 1363648808875010707
+      Part 2 F_68: 3595171581600360654
+      Part 2 F_69: 3166403690582306011
+      Part 2 F_7: -4319051452520695711
+      Part 2 F_70: -3623742683716388303
+      Part 2 F_71: 3345426197767147808
+      Part 2 F_72: 815993918143949151
+      Part 2 F_73: 5143889158123769740
+      Part 2 F_74: -2341158822712922246
+      Part 2 F_75: -553212527456411363
+      Part 2 F_76: 5941749548773563482
+      Part 2 F_77: -5805315644335707629
+      Part 2 F_78: 177692500332922202
+      Part 2 F_79: 1676830800988151523
+      Part 2 F_8: 2071975703616655052
+      Part 2 F_9: 1863532395489085902
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

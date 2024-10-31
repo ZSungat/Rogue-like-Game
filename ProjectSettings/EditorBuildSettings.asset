@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/Platform Choice.unity
+    guid: 836c363cfa616374686e1913251b8975
+  - enabled: 1
     path: Assets/Scenes/PC/PC Main Menu.unity
     guid: 3ef737a44c99cb5428d7f1bd481bca29
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/PC/Pc Game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -20,4 +23,4 @@ EditorBuildSettings:
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6fced6fa065c2f84891c55fd7442cdbf, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 27a6f8e9f1262ee42abba34c9a35e7cc, type: 2}
-  m_UseUCBPForAssetBundles: 0
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: ae67b3d1de3d1f646b1e1930f687e544, type: 3}

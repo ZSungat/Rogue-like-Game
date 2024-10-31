@@ -56,6 +56,7 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+
     public void ChangedMasterVolume()
     {
         MainAudioMixer.SetFloat("MasterVolume", MasterSlider.value);

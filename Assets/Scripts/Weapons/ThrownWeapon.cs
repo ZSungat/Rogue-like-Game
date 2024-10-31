@@ -11,6 +11,11 @@ public class ThrownWeapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (TheRB == null)
+        {
+            TheRB = GetComponent<Rigidbody2D>();
+        }
+
         TheRB.velocity = new Vector2(Random.Range(-ThrowPower, ThrowPower), ThrowPower);
     }
 

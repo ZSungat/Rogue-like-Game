@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1806187367823704573}
   - component: {fileID: 8264329545302729813}
   - component: {fileID: 6586418661140176718}
-  - component: {fileID: 1396854565367416235}
   - component: {fileID: 9071778809639370710}
+  - component: {fileID: 1396854565367416235}
   m_Layer: 6
   m_Name: Turya
   m_TagString: Enemy
@@ -54,8 +54,6 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -114,7 +112,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -126,7 +124,6 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7591514064882421598}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -150,13 +147,13 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1.19
+  serializedVersion: 2
+  m_Radius: 1.2
 --- !u!95 &6586418661140176718
 Animator:
-  serializedVersion: 7
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -170,37 +167,11 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1396854565367416235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7591514064882421598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8b79e6b351ec4944af5d4e220047276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 1806187367823704573}
-  moveSpeed: 2.5
-  damage: 1
-  HitWaitTime: 1
-  health: 25
-  maxHealth: 25
-  knockBackTime: 0.4
-  ExpToGive: 1
-  CoinValue: 1
-  CoinDropRate: 0.5
-  healthBarOffset: {x: 0, y: 1, z: 0}
-  isRangedEnemy: 0
-  StoppingDistance: 0
 --- !u!114 &9071778809639370710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,3 +188,28 @@ MonoBehaviour:
   speed: 0.5
   minSize: 0.9
   maxSize: 1.1
+--- !u!114 &1396854565367416235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7591514064882421598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b79e6b351ec4944af5d4e220047276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1806187367823704573}
+  moveSpeed: 2.5
+  damage: 1
+  hitWaitTime: 1
+  health: 25
+  maxHealth: 25
+  knockBackTime: 0
+  expToGive: 1
+  coinValue: 1
+  coinDropRate: 0.5
+  healthBarOffset: {x: 0, y: 1, z: 0}
+  isRangedEnemy: 0
+  stoppingDistance: 0

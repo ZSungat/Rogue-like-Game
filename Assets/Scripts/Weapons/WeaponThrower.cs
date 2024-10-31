@@ -19,7 +19,6 @@ public class WeaponThrower : Weapon
         if (StatsUpdated)
         {
             StatsUpdated = false;
-
             SetStats();
         }
 
@@ -30,7 +29,8 @@ public class WeaponThrower : Weapon
 
             for (int i = 0; i < Stats[WeaponLevel].Amount; i++)
             {
-                Instantiate(Damager, Damager.transform.position, Damager.transform.rotation).gameObject.SetActive(true);
+                EnemyDamager newDamager = Instantiate(Damager, transform.position, Quaternion.identity);
+                newDamager.gameObject.SetActive(true);
             }
 
             SFXManager.instance.PlaySFXPitched(5);
@@ -41,9 +41,7 @@ public class WeaponThrower : Weapon
     {
         Damager.DamageAmount = Stats[WeaponLevel].Damage;
         Damager.LifeTime = Stats[WeaponLevel].Duration;
-
         Damager.transform.localScale = Vector3.one * Stats[WeaponLevel].Range;
-
         ThrowCounter = 0f;
     }
 }

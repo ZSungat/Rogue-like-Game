@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
     private EnemyHealthBar healthBar;
     [SerializeField] private Vector3 healthBarOffset = new Vector3(0, 1, 0);
 
+    // -----------------------------Ranged Enemy -----------------------------//
     public bool isRangedEnemy;
     public float stoppingDistance;
 
@@ -109,11 +110,13 @@ public class EnemyController : MonoBehaviour
     private void OnEnable()
     {
         Ticker.OnTickAction += Tick;
+        anim.SetBool("IsMoving", true);
     }
 
     private void OnDisable()
     {
         Ticker.OnTickAction -= Tick;
+        anim.SetBool("IsMoving", false);
     }
 
     private void LateUpdate()
@@ -125,10 +128,9 @@ public class EnemyController : MonoBehaviour
     {
         health -= damageToTake;
         healthBar.UpdateHealthBar(health / maxHealth);
-        anim.SetTrigger("Hit"); // Set the trigger for the hit animation
-
         if (health <= 0)
         {
+            anim.SetBool("IsDead", true); // Trigger the IsDead animation
             Destroy(gameObject);
             ExperienceLevelController.instance.SpawnExp(transform.position, expToGive);
             if (Random.value <= coinDropRate)
@@ -152,9 +154,17 @@ public class EnemyController : MonoBehaviour
 
         if (shouldKnockBack)
         {
+            ApplyKnockBack();
+        }
+    }
+
+    private void ApplyKnockBack()
+    {
+        if (knockBackCounter <= 0)
+        {
             knockBackCounter = knockBackTime;
             moveSpeed = -initialMoveSpeed * 2f; // Apply knockback by reversing and increasing speed
-            anim.SetBool("IsHit", true);
+            anim.SetBool("IsHit", true); // Trigger the IsHit animation
         }
     }
 

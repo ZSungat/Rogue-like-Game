@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 69257b50d7bb27e4a82702d64f310505
+guid: b05b943840117954b95d00ea2193fda4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -149,153 +149,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Projectiles-sharedassets0.assets-49_0
-      rect:
-        serializedVersion: 2
-        x: 172
-        y: 99
-        width: 45
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dfc052d9e9558e94d9bdfcf98a98763a
-      internalID: -2100157722
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Projectiles-sharedassets0.assets-49_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 43
-        width: 42
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 03b72bad9a1718a4191b23b677368ea9
-      internalID: 1124452211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Projectiles-sharedassets0.assets-49_2
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 43
-        width: 42
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 67c3f27b75186694a9226e5395085ef4
-      internalID: -1865129830
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Projectiles-sharedassets0.assets-49_3
-      rect:
-        serializedVersion: 2
-        x: 86
-        y: 43
-        width: 42
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 18d50fdc7a211bb4c83a79ac597dbdd5
-      internalID: 1166530499
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Projectiles-sharedassets0.assets-49_4
-      rect:
-        serializedVersion: 2
-        x: 129
-        y: 43
-        width: 42
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 29527b3463862364d8642be6702a5f3f
-      internalID: -968929238
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Projectiles-sharedassets0.assets-49_5
-      rect:
-        serializedVersion: 2
-        x: 172
-        y: 71
-        width: 45
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbfafa99eb2155c40b9d1d95df3716ba
-      internalID: -1321384136
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Projectiles-sharedassets0.assets-49_6
-      rect:
-        serializedVersion: 2
-        x: 172
-        y: 43
-        width: 45
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b7133905a5ef5c844888caf9efdda73a
-      internalID: -227138017
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Projectiles-sharedassets0.assets-49_7
       rect:
         serializedVersion: 2
@@ -304,7 +157,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -312,90 +165,6 @@ TextureImporter:
       bones: []
       spriteID: 47691713bb6c2ae4f86bc5bc4e0781b1
       internalID: 620744136
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Projectiles-sharedassets0.assets-49_8
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 0
-        width: 42
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 743c29178d1569948bf829fe0bbb6b2b
-      internalID: -38676125
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Projectiles-sharedassets0.assets-49_9
-      rect:
-        serializedVersion: 2
-        x: 86
-        y: 0
-        width: 42
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 53817a2487a37ab4cbfeb0d1884c02c0
-      internalID: 632868605
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Projectiles-sharedassets0.assets-49_10
-      rect:
-        serializedVersion: 2
-        x: 129
-        y: 0
-        width: 42
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 53d7cc20ec0ff9543aa37e951aaf9921
-      internalID: -1564284879
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Projectiles-sharedassets0.assets-49_11
-      rect:
-        serializedVersion: 2
-        x: 172
-        y: 0
-        width: 42
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2bd447e75a79ccc4b8cb32b7f4c38a14
-      internalID: -1399264121
       vertices: []
       indices: 
       edges: []

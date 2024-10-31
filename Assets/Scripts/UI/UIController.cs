@@ -4,37 +4,75 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class UIController : MonoBehaviour
 {
+    #region Singleton
     public static UIController instance;
     private void Awake()
     {
         instance = this;
     }
-    public Slider ExpLevelSlider;
+    #endregion
 
+    #region UI References
+    [Header("UI Panels")]
     public GameObject LevelUpPanel;
     public GameObject PauseScreen;
     public GameObject LevelEndScreen;
     public GameObject SettingsScreen;
+
+    [Header("Level Up UI")]
     public LevelUpSelectionButton[] LevelUpButtons;
     public GameObject[] DescriptionButton;
 
-
+    [Header("UI Text Elements")]
     public TMP_Text EndTimeText;
     public TMP_Text ExpLevelText;
     public TMP_Text CoinText;
     public TMP_Text TimeText;
+    public TMP_Text FpsCounterText;
 
+    [Header("Progress Bars")]
+    public Slider ExpLevelSlider;
+
+    [Header("Upgrade Displays")]
+    public PlayerStatUpgradeDisplay MoveSpeedUpgradeDisplay;
+    public PlayerStatUpgradeDisplay HealthUpgradeDisplay;
+    public PlayerStatUpgradeDisplay PickupRangeUpgradeDisplay;
+    public PlayerStatUpgradeDisplay MaxWeaponsUpgradeDisplay;
+    #endregion
+
+    #region Private Variables
+    private float currentFps;
+    private float smoothedFps;
+    private float smoothingFactor = 0.4f; // Adjust this to control how much weight is given to recent FPS
     public string MainMenuName;
+    #endregion
 
-    public PlayerStatUpgradeDisplay MoveSpeedUpgradeDisplay, HealthUpgradeDisplay, PickupRangeUpgradeDisplay, MaxWeaponsUpgradeDisplay;
-
+    #region Unity Lifecycle Methods
+    private IEnumerator Start()
+    {
+        while (true)
+        {
+            currentFps = 1f / Time.unscaledDeltaTime;
+            smoothedFps = (smoothingFactor * currentFps) + (1f - smoothingFactor) * smoothedFps;
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        HandleInput();
+        UpdateFPSCounter();
+    }
+    #endregion
+
+    #region Input Handling
+    private void HandleInput()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             if (SettingsScreen.activeSelf)
             {
@@ -45,105 +83,102 @@ public class UIController : MonoBehaviour
                 PauseUnpause();
             }
         }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Restart();
-        }
-
-
-
-
-        // if (Input.GetKeyDown(Keyboard.LeftControl) && Input.GetKeyDown(KeyCode.Q))
-        // {
-        //     Restart();
-        // }
-        // if (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Alpha2))
-        // {
-        //     Restart();
-        // }
-        // if (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Alpha3))
-        // {
-        //     Restart();
-        // }
-        // if (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Alpha4))
-        // {
-        //     Restart();
-        // }
     }
+    #endregion
+
+    #region UI Updates
     public void UpdateExperience(int CurrentExp, int LevelExp, int CurrentLevel)
     {
         ExpLevelSlider.maxValue = LevelExp;
         ExpLevelSlider.value = CurrentExp;
-
         ExpLevelText.text = "Level  " + CurrentLevel;
     }
-    public void SkipLevelUp()
-    {
-        LevelUpPanel.SetActive(false);
-        Time.timeScale = 1f;
-    }
+
     public void UpdateCoins()
     {
         CoinText.text = "Coins: " + CoinController.instance.CurrentCoins;
     }
 
+    public void UpdateTimer(float time)
+    {
+        float minutes = Mathf.FloorToInt(time / 60f);
+        float seconds = Mathf.FloorToInt(time % 60);
+        TimeText.text = "Time: " + minutes + ":" + seconds.ToString("00");
+    }
 
+    private void UpdateFPSCounter()
+    {
+        FpsCounterText.text = "" + Mathf.Round(smoothedFps);
+    }
+    #endregion
 
-
-
-
+    #region Player Stat Purchases
     public void PurchaseMoveSpeed()
     {
         PlayerStatController.instance.PurchaseMoveSpeed();
-        // SkipLevelUp();
     }
 
     public void PurchaseHealth()
     {
         PlayerStatController.instance.PurchaseHealth();
-        // SkipLevelUp();
     }
 
     public void PurchasePickupRange()
     {
         PlayerStatController.instance.PurchasePickupRange();
-        // SkipLevelUp();
     }
 
     public void PurchaseMaxWeapons()
     {
         PlayerStatController.instance.PurchaseMaxWeapons();
-        // SkipLevelUp();
     }
+    #endregion
 
-
-
-
-
-
-
-    public void UpdateTimer(float time)
+    #region Game State Management
+    public void SkipLevelUp()
     {
-        float minutes = Mathf.FloorToInt(time / 60f);
-        float seconds = Mathf.FloorToInt(time % 60);
-
-        TimeText.text = "Time: " + minutes + ":" + seconds.ToString("00");
-    }
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LevelUpPanel.SetActive(false);
         Time.timeScale = 1f;
     }
-    public void GoToMainMenu()
+
+    public void PauseUnpause()
     {
-        SceneManager.LoadScene(MainMenuName);
-        Time.timeScale = 1f;
+        if (PauseScreen.activeSelf == false)
+        {
+            PauseGame();
+        }
+        else
+        {
+            UnpauseGame();
+        }
     }
+
+    private void PauseGame()
+    {
+        if (SFXManager.instance != null)
+        {
+            SFXManager.instance.StopMusic();
+        }
+        PauseScreen.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    private void UnpauseGame()
+    {
+        PauseScreen.SetActive(false);
+        if (SFXManager.instance != null)
+        {
+            SFXManager.instance.PlayMusic(SFXManager.instance.currentIndex);
+        }
+
+        if (LevelUpPanel.activeSelf == false)
+        {
+            Time.timeScale = 1f;
+        }
+    }
+    #endregion
+
+    #region Scene Management
     public void Settings()
     {
         if (SettingsScreen.activeSelf == false)
@@ -159,29 +194,22 @@ public class UIController : MonoBehaviour
             PauseUnpause();
         }
     }
-    public void PauseUnpause()
-    {
-        if (PauseScreen.activeSelf == false)
-        {
-            if (SFXManager.instance != null)
-            {
-                SFXManager.instance.StopMusic();
-            }
-            PauseScreen.SetActive(true);
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            PauseScreen.SetActive(false);
-            if (SFXManager.instance != null)
-            {
-                SFXManager.instance.PlayMusic(SFXManager.instance.currentIndex);
-            }
 
-            if (LevelUpPanel.activeSelf == false)
-            {
-                Time.timeScale = 1f;
-            }
-        }
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
     }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(MainMenuName);
+        Time.timeScale = 1f;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    #endregion
 }

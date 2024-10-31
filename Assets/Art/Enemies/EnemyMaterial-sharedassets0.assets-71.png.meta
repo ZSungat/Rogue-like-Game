@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 60
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,10 +69,36 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -94,50 +120,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 1
-    textureFormat: 12
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 4096
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -149,10 +136,115 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PurpleEye_2
+      name: PurpleEye_Idle_Forward
       rect:
         serializedVersion: 2
-        x: 1488
+        x: 986
+        y: 1820
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3234e0ac6628a24c93e97cafccd0e61
+      internalID: -1789374522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleEye_Idle_Left
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1694
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e42c6be5bb89504c80eb8cd96b49a7f
+      internalID: -1868127743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleEye_Idle_Right
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1603
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b80db02c6eb55d4cbab7252b81c4a8b
+      internalID: -1343806443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleEye_Walking_Forward_2
+      rect:
+        serializedVersion: 2
+        x: 1487
+        y: 1174
+        width: 66
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2a5940ccff27494d8f26cb319160f3b
+      internalID: -247560712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleEye_Walking_Forward_1
+      rect:
+        serializedVersion: 2
+        x: 1487
+        y: 1438
+        width: 66
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 717514929055c1c4e8af394f690f6ca0
+      internalID: -1711568974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleEye_Walking_Right_1
+      rect:
+        serializedVersion: 2
+        x: 1487
         y: 910
         width: 66
         height: 87
@@ -163,18 +255,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ac9e7f44db7c4c41b2a97a1147c73cb
-      internalID: 1004042603
+      spriteID: 05588fc826738eb4cba2ef959ebeeb64
+      internalID: -1266121449
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PurpleEye_3
+      name: PurpleEye_Walking_Right_2
       rect:
         serializedVersion: 2
         x: 1688
-        y: 1934
+        y: 1933
         width: 66
         height: 84
       alignment: 0
@@ -184,41 +276,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6901a36dc41f86478b96cf1d3edf23c
-      internalID: 941104096
+      spriteID: d823729c58976fb4382f0582321a3243
+      internalID: 1695648272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PurpleEye_4
+      name: PurpleEye_Walking_Right_3
       rect:
         serializedVersion: 2
         x: 1688
         y: 1763
         width: 66
         height: 84
-      alignment: 9
-      pivot: {x: 0.47305205, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bc5f1891e20c3e04298e157fac8728d2
-      internalID: -1960021191
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PurpleEye_Die_2
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 854
-        width: 84
-        height: 111
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,20 +297,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7627502bfc49f6548beeb09c926b098b
-      internalID: -582697339
+      spriteID: 7d16ce5de195dbc4587808f806928ce3
+      internalID: -1697460220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PurpleEye_Die_1
+      name: PurpleEye_Walking_Left_2
       rect:
         serializedVersion: 2
-        x: 6
-        y: 972
-        width: 81
-        height: 105
+        x: 1688
+        y: 1678
+        width: 66
+        height: 84
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,20 +318,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e146385c1ac2094ea699ba1d8e9dfa7
-      internalID: 1125474810
+      spriteID: 8651983ff4136f44d9c48c9f6b8e8c65
+      internalID: -317969096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alien_1
+      name: PurpleEye_Walking_Left_3
       rect:
         serializedVersion: 2
-        x: 2242
-        y: 392
-        width: 63
-        height: 75
+        x: 1688
+        y: 1508
+        width: 66
+        height: 84
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,18 +339,102 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7b6307ff6e05004d9b28666dfee3a31
-      internalID: -108067415
+      spriteID: cbe324bc92d5ec34b941c1b307743ace
+      internalID: 778972994
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alien_2
+      name: PurpleEye_Walking_Forward_3
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 85
+        width: 66
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b96c730744ad4464085c7a0f8edd4712
+      internalID: 536458939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleEye_Walking_Left_1
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 1496
+        width: 66
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4820182fb859bb849afdb4ae6d3e9ba5
+      internalID: 536346756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleEye_Hit
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 851
+        width: 90
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ae46b91b594da848be7136cd355e958
+      internalID: 1346628985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleEye_Death
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 966
+        width: 90
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83382469e3e2ec047b771fadf3649f7b
+      internalID: 2086593786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alien_Walking_Left_2
       rect:
         serializedVersion: 2
         x: 2428
-        y: 1404
+        y: 1641
         width: 57
         height: 78
       alignment: 0
@@ -289,18 +444,123 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77fa5e4cd1033ea44a2624ba904cbc18
-      internalID: 1158975227
+      spriteID: 739bf704900a1374e9f4fb4186d8dc45
+      internalID: -236767332
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alien_3
+      name: Alien_Walking_Right_2
+      rect:
+        serializedVersion: 2
+        x: 2428
+        y: 1325
+        width: 57
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40b66a7234937154ea9ac73824fec730
+      internalID: -1036862173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alien_Walking_Forward_1
+      rect:
+        serializedVersion: 2
+        x: 2242
+        y: 924
+        width: 63
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87e8aeffe730e174a919a236a67d82eb
+      internalID: -237929394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alien_Walking_Left_1
+      rect:
+        serializedVersion: 2
+        x: 2242
+        y: 772
+        width: 63
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28023c077e3c2a94293b29a25d564985
+      internalID: 843080090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alien_Walking_Right_1
+      rect:
+        serializedVersion: 2
+        x: 2242
+        y: 620
+        width: 63
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a2c91d51c350648a6a8dc6224130f9
+      internalID: -2059249030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alien_Walking_Forward_2
+      rect:
+        serializedVersion: 2
+        x: 2428
+        y: 535
+        width: 57
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fa4838fbc89cd8449fb68037b4bd6bf
+      internalID: 1086417817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alien_Idle_1
       rect:
         serializedVersion: 2
         x: 3166
-        y: 1378
+        y: 1062
         width: 45
         height: 78
       alignment: 0
@@ -310,18 +570,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6ddc2debc99f3f469768b68b8a26256
-      internalID: 29237682
+      spriteID: e8140d68af7410a4293318275315a5c6
+      internalID: 383319363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alien_4
+      name: Alien_Idle_2
       rect:
         serializedVersion: 2
-        x: 3212
-        y: 1141
+        x: 3580
+        y: 1062
         width: 45
         height: 78
       alignment: 0
@@ -331,20 +591,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a34705b29103c749a370602ac1dd62b
-      internalID: 182449969
+      spriteID: de7f864cd869fcb419378d881eb995da
+      internalID: -405494016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyMaterial-sharedassets0.assets-71_0
+      name: Alien_Hit
       rect:
         serializedVersion: 2
-        x: 129
-        y: 117
-        width: 65
-        height: 90
+        x: 121
+        y: 109
+        width: 81
+        height: 102
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -352,20 +612,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e03c48f1f810c714e968b2ba1c856d71
-      internalID: 1106381054
+      spriteID: fee8b045b1303e7449fc05017b66c03d
+      internalID: -993458709
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyMaterial-sharedassets0.assets-71_1
+      name: Alien_Death
       rect:
         serializedVersion: 2
-        x: 126
-        y: 219
-        width: 65
-        height: 90
+        x: 121
+        y: 212
+        width: 75
+        height: 99
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -373,29 +633,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a160ad95d59f834e869b44bc1e50cd8
-      internalID: 194878850
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PurpleEye_1
-      rect:
-        serializedVersion: 2
-        x: 1320
-        y: 1603
-        width: 66
-        height: 90
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1abd608d8fa2a4c4399ff4250cc45226
-      internalID: 832747404
+      spriteID: 060a4b2379aee804bbbeb19aa6a67aa3
+      internalID: 1652896026
       vertices: []
       indices: 
       edges: []
@@ -411,19 +650,31 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Alien_1: -108067415
-      Alien_2: 1158975227
-      Alien_3: 29237682
-      Alien_4: 182449969
-      EnemyMaterial-sharedassets0.assets-71_0: 1106381054
-      EnemyMaterial-sharedassets0.assets-71_1: 194878850
-      PurpleEye_1: 832747404
-      PurpleEye_2: 1004042603
-      PurpleEye_3: 941104096
-      PurpleEye_4: -1960021191
-      PurpleEye_5: -1205005118
-      PurpleEye_Die_1: 1125474810
-      PurpleEye_Die_2: -582697339
+      Alien_Death: 1652896026
+      Alien_Hit: -993458709
+      Alien_Idle_1: 383319363
+      Alien_Idle_2: -405494016
+      Alien_Walking_Forward_1: -237929394
+      Alien_Walking_Forward_2: 1086417817
+      Alien_Walking_Left_1: 843080090
+      Alien_Walking_Left_2: -236767332
+      Alien_Walking_Right_1: -2059249030
+      Alien_Walking_Right_2: -1036862173
+      PurpleEye_Death: 2086593786
+      PurpleEye_Hit: 1346628985
+      PurpleEye_Idle_Forward: -1789374522
+      PurpleEye_Idle_Left: -1868127743
+      PurpleEye_Idle_Right: -1343806443
+      PurpleEye_Walking_Forward_1: -1711568974
+      PurpleEye_Walking_Forward_2: -247560712
+      PurpleEye_Walking_Forward_3: 536458939
+      PurpleEye_Walking_Left_1: 536346756
+      PurpleEye_Walking_Left_2: -317969096
+      PurpleEye_Walking_Left_3: 778972994
+      PurpleEye_Walking_Left_4: 1482808421
+      PurpleEye_Walking_Right_1: -1266121449
+      PurpleEye_Walking_Right_2: 1695648272
+      PurpleEye_Walking_Right_3: -1697460220
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

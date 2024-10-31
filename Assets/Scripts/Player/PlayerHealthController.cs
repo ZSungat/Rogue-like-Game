@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerHealthController : MonoBehaviour
 {
+    #region Singleton
     public static PlayerHealthController instance;
     public PlayerController PlayerControllerScript;
 
@@ -12,55 +12,66 @@ public class PlayerHealthController : MonoBehaviour
     {
         instance = this;
     }
+    #endregion
 
-    public float CurrentHealth, MaxHealth;
+    #region Health Variables
+    [Header("Health Settings")]
+    public int CurrentHealth;
+    public int MaxHealth;
     public int NumberOfHearts;
 
+    [Header("UI Elements")]
     public Image[] Hearts;
     public Sprite FullHeart;
     public Sprite emptyHeart;
 
+    [Header("Death Effects")]
     public GameObject DeathEffect;
+    #endregion
 
     private bool isDead = false;
 
-    // Start is called before the first frame update
     void Start()
     {
-        MaxHealth = PlayerStatController.instance.Health[0].Value;
-        CurrentHealth = MaxHealth;
+        InitializeHealth();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (CurrentHealth > NumberOfHearts)
+        if (!isDead)
         {
-            CurrentHealth = NumberOfHearts;
+            UpdateHealthDisplay();
         }
+    }
 
-        // Check if CurrentHealth is zero or below to set empty hearts
+    private void InitializeHealth()
+    {
+        // Convert float value to int using Round
+        MaxHealth = Mathf.RoundToInt(PlayerStatController.instance.Health[0].Value);
+        CurrentHealth = MaxHealth;
+        NumberOfHearts = MaxHealth;
+        UpdateHealthDisplay();
+    }
+
+    private void UpdateHealthDisplay()
+    {
+        // Ensure CurrentHealth doesn't exceed NumberOfHearts
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, NumberOfHearts);
+
+        // Check for death
         if (CurrentHealth <= 0 && !isDead)
         {
-            isDead = true;
-            StartCoroutine(DeactivatePlayer());
-            return; // Exit Update to prevent further heart updates
+            HandleDeath();
+            return;
         }
 
-        // Display hearts based on CurrentHealth
+        // Update heart displays
         for (int i = 0; i < Hearts.Length; i++)
         {
-            if (i < Mathf.CeilToInt(CurrentHealth))
-            {
-                Hearts[i].sprite = FullHeart;
-            }
-            else
-            {
-                Hearts[i].sprite = emptyHeart;
-            }
             if (i < NumberOfHearts)
             {
                 Hearts[i].enabled = true;
+                Hearts[i].sprite = (i < CurrentHealth) ? FullHeart : emptyHeart;
             }
             else
             {
@@ -69,9 +80,15 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
+    private void HandleDeath()
+    {
+        isDead = true;
+        StartCoroutine(DeactivatePlayer());
+    }
+
     IEnumerator DeactivatePlayer()
     {
-        yield return new WaitForSeconds(0.1f); // Adjust the delay as needed
+        yield return new WaitForSeconds(0.1f);
         PlayerControllerScript.OnDisable();
         LevelManager.instance.EndLevel();
         SFXManager.instance.PlaySFX(11);
@@ -81,14 +98,35 @@ public class PlayerHealthController : MonoBehaviour
 
     public void TakeDamage(int DamageToTake)
     {
+        if (isDead) return;
+
         CurrentHealth -= DamageToTake;
         SFXManager.instance.PlaySFX(10);
 
-        if (CurrentHealth <= 0 && !isDead)
+        if (CurrentHealth <= 0)
         {
-            isDead = true;
-            StartCoroutine(DeactivatePlayer());
-            LevelManager.instance.EndLevel();
+            HandleDeath();
         }
+
+        UpdateHealthDisplay();
+    }
+
+    // Updated method to handle integer health upgrades
+    public void UpgradeHealth(int oldMaxHealth, int newMaxHealth)
+    {
+        // Calculate health difference
+        int healthIncrease = newMaxHealth - oldMaxHealth;
+
+        // Update max health
+        MaxHealth = newMaxHealth;
+        NumberOfHearts = MaxHealth;
+
+        // Increase current health by the same amount
+        CurrentHealth += healthIncrease;
+
+        // Make sure current health doesn't exceed max health
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 1, MaxHealth);
+
+        UpdateHealthDisplay();
     }
 }

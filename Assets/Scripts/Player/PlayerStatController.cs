@@ -89,14 +89,17 @@ public class PlayerStatController : MonoBehaviour
 
     public void PurchaseHealth()
     {
+        int oldHealth = Mathf.RoundToInt(Health[HealthLevel].Value);
         HealthLevel++;
+        int newHealth = Mathf.RoundToInt(Health[HealthLevel].Value);
+
         CoinController.instance.SpendCoins(Health[HealthLevel].Cost);
         UpdateDisplay();
 
-        PlayerHealthController.instance.MaxHealth = Health[HealthLevel].Value;
-        PlayerHealthController.instance.CurrentHealth += Health[HealthLevel].Value - Health[HealthLevel - 1].Value;
-        PlayerHealthController.instance.NumberOfHearts++;
+        // Use the new integer-based UpgradeHealth method
+        PlayerHealthController.instance.UpgradeHealth(oldHealth, newHealth);
     }
+
 
     public void PurchasePickupRange()
     {
